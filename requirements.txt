@@ -1,0 +1,28 @@
+# Google Cloud / Vertex AI
+google-cloud-aiplatform>=1.71.0
+google-cloud-documentai>=2.30.0
+vertexai>=1.71.0
+
+# Orchestration
+langchain>=0.3.0
+langchain-google-vertexai>=2.0.0
+langchain-core>=0.3.0
+
+# Data models / validation
+pydantic>=2.7.0
+pyyaml>=6.0
+
+# Document I/O
+python-docx>=1.1.0          # .docx 읽기/쓰기
+openpyxl>=3.1.0             # .xlsx 쓰기
+
+# External connectors
+requests>=2.32.0
+
+# Utilities
+tenacity>=8.3.0             # 재시도 로직
+python-dotenv>=1.0.0
+
+# Dev / test
+pytest>=8.0.0
+pytest-mock>=3.14.0

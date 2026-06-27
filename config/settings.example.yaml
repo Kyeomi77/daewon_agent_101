@@ -1,0 +1,55 @@
+# ============================================================
+# 대원제약 제제연구 AI 에이전트 설정
+# 실제 값으로 채운 뒤 config/settings.yaml 로 복사하세요.
+# 민감정보는 절대 git 에 커밋하지 마세요.
+# ============================================================
+
+gcp:
+  project_id: "daewon-rnd-poc"        # GCP 프로젝트 ID
+  location: "asia-northeast3"          # 리전 (서울). 일부 모델은 us-central1 만 지원
+  staging_bucket: "gs://daewon-rnd-poc-agent"
+
+document_ai:
+  # Document AI Layout Parser 프로세서
+  processor_location: "us"             # Document AI 는 us / eu 만 지원
+  processor_id: "PROCESSOR_ID_HERE"    # Layout Parser 프로세서 ID
+
+models:
+  # 임베딩: 한국어 + 영문 동시 지원
+  embedding_model: "text-multilingual-embedding-002"
+  # 추론 엔진 (배포 전 콘솔에서 사용 가능 모델명 확인 권장)
+  generation_model: "gemini-1.5-pro-002"
+  temperature: 0.2
+  max_output_tokens: 8192
+
+vector_search:
+  index_endpoint_id: "INDEX_ENDPOINT_ID_HERE"
+  deployed_index_id: "daewon_formulation_idx"
+  dimensions: 768                      # text-multilingual-embedding-002 출력 차원
+  top_k: 5                             # Top-5 유사 처방
+
+# Step 6 합격 기준 (명세서 기준)
+acceptance_criteria:
+  dissolution_min: 85.0                # 용출률 ≥ 85%
+  assay_min: 98.5                      # 함량 ≥ 98.5%
+
+# Section 2 외부 데이터 소스 (선택적으로 사용)
+external_sources:
+  pubchem:
+    enabled: true
+    base_url: "https://pubchem.ncbi.nlm.nih.gov/rest/pug"
+  pubmed:
+    enabled: true
+    base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+    api_key: ""                        # NCBI API key (선택, rate limit 완화)
+  fda_iig:
+    enabled: true
+    base_url: "https://api.fda.gov/drug/label.json"
+
+output:
+  formulation_count: 3                 # 최적 처방 3종
+  eln_integration: false               # 클라우독/ELN 연동 (구현 시 true)
+
+logging:
+  audit_trail: true                    # GxP 감사 추적 로그
+  level: "INFO"

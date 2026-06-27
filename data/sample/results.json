@@ -1,0 +1,5 @@
+[
+  {"formulation_id": "F1", "measured_dissolution": 90.5, "measured_assay": 99.1},
+  {"formulation_id": "F2", "measured_dissolution": 72.0, "measured_assay": 97.8},
+  {"formulation_id": "F3", "measured_dissolution": 88.0, "measured_assay": 98.9}
+]
